@@ -11,3 +11,11 @@ Gridfinity is an open spec grid based modular system for displaying and storing 
 ## How to use this
 
 It's not written, what do you mean how to use this?
+
+## Links
+
+[this kill team carry case](https://www.myminifactory.com/object/3d-print-simple-mini-storage-kill-squad-all-in-one-carry-case-412299)\
+[Gridfinity is](https://gridfinity.xyz/specification/)\
+[here's the creator in the initial release of the system though](https://www.youtube.com/watch?v=ra_9zU-mnl8)\
+[I've wrote about gridfinity](https://blueshirt.dev/2023/01/14/gridfinity-things-and-thangs.html)\
+[how I use gridfinity for transporting items](https://blueshirt.dev/2023/06/02/gridfinity-on-the-go.html)
