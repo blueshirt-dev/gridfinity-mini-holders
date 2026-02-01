@@ -18,6 +18,7 @@ addition = 0.01;
 gridfinity_x = 1;
 gridfinity_y = 1;
 gridfinity_z = 6;
+gridfinity_wall_thickness = 3;
 
 // Rails
 rail_thickness = 3;
@@ -30,9 +31,12 @@ difference(){
         gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance,
         gridfinity_z * gridfinity_z_to_mm],false);
     
-    for(i = [1:rail_spacing + rail_thickness:gridfinity_x * gridfinity_xy_to_mm ]){
-        translate( rail_direction==horizontal ? [i,removal,removal] : 
-        rail_direction==vertical ? [removal,removal,i] : [0,0,0])
-            cube([rail_thickness, gridfinity_y * gridfinity_xy_to_mm,rail_depth]);
+    for(i = [gridfinity_wall_thickness:rail_spacing + rail_thickness:gridfinity_x * gridfinity_xy_to_mm ]){
+        if(! (i+rail_thickness > gridfinity_x * gridfinity_xy_to_mm - gridfinity_wall_thickness))
+        {
+            translate( rail_direction==horizontal ? [i,removal + gridfinity_wall_thickness,removal] : 
+                    rail_direction==vertical ? [removal,removal + gridfinity_wall_thickness,i] : [0,0,0])
+                cube([rail_thickness, gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2 ,rail_depth]);
+        }
     }
 }
