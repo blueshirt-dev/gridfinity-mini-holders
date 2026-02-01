@@ -22,7 +22,7 @@ gridfinity_wall_thickness = 3;
 
 // Rails
 rail_thickness = 3;
-rail_spacing = 4;
+rail_spacing = 5;
 rail_direction = horizontal;
 
 
@@ -36,7 +36,7 @@ difference(){
         {
             translate( rail_direction==horizontal ? [i,removal + gridfinity_wall_thickness,removal] : 
                     rail_direction==vertical ? [removal,removal + gridfinity_wall_thickness,i] : [0,0,0])
-                cube([rail_thickness, gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2 ,rail_depth]);
+                cube([rail_thickness, gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2 ,gridfinity_z*gridfinity_z_to_mm + addition*2]);
         }
     }
 }
