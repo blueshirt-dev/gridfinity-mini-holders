@@ -8,6 +8,7 @@ gridfinity_tolerance = 0.5;
 rail_depth = 3;
 horizontal = 1;
 vertical = 2;
+rail_slide_depth = 3;
 
 // Offsets to prevent impossibly thin artifacts
 removal = -0.01;
@@ -39,4 +40,9 @@ difference(){
                 cube([rail_thickness, gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2 ,gridfinity_z*gridfinity_z_to_mm + addition*2]);
         }
     }
+
+    translate([gridfinity_wall_thickness,gridfinity_wall_thickness+rail_depth,removal])
+        cube([gridfinity_x * gridfinity_xy_to_mm - gridfinity_tolerance - gridfinity_wall_thickness*2,
+            gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance- gridfinity_wall_thickness*2 - rail_depth*2,
+            gridfinity_z * gridfinity_z_to_mm + addition*2],false);
 }
