@@ -50,6 +50,12 @@ difference(){
                         gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2,
                         gridfinity_z*gridfinity_z_to_mm + addition*2]);
             }
+
+            translate([gridfinity_wall_thickness,gridfinity_wall_thickness+rail_depth,removal])
+                cube([gridfinity_x * gridfinity_xy_to_mm - gridfinity_tolerance - gridfinity_wall_thickness*2,
+                    gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance- gridfinity_wall_thickness*2 - rail_depth*2,
+                    gridfinity_z * gridfinity_z_to_mm + addition*2],false);
+
         }
         else if(rail_direction == horizontal){
             if(! (i+rail_thickness > gridfinity_z * gridfinity_z_to_mm - gridfinity_wall_thickness)){
@@ -58,15 +64,15 @@ difference(){
                             [ gridfinity_x*gridfinity_xy_to_mm, 
                             gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness * 2,
                             rail_thickness]);
-                }
+            }
+
+            translate([removal,gridfinity_wall_thickness+rail_depth,gridfinity_wall_thickness])
+                cube([gridfinity_x * gridfinity_xy_to_mm - gridfinity_tolerance  + addition*2,
+                    gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance- gridfinity_wall_thickness*2 - rail_depth*2,
+                    gridfinity_z * gridfinity_z_to_mm  - gridfinity_wall_thickness*2],false);
         }
         else {
             echo("No rail direction set");
         }
     }
-
-    translate([gridfinity_wall_thickness,gridfinity_wall_thickness+rail_depth,removal])
-        cube([gridfinity_x * gridfinity_xy_to_mm - gridfinity_tolerance - gridfinity_wall_thickness*2,
-            gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance- gridfinity_wall_thickness*2 - rail_depth*2,
-            gridfinity_z * gridfinity_z_to_mm + addition*2],false);
 }
