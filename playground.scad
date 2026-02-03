@@ -40,8 +40,9 @@ difference(){
         gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance,
         gridfinity_z * gridfinity_z_to_mm],false);
     
-    for(i = [gridfinity_wall_thickness:rail_spacing + rail_thickness:gridfinity_x * gridfinity_xy_to_mm ]){
-        if(rail_direction == vertical){
+    
+    if(rail_direction == vertical){
+        for(i = [gridfinity_wall_thickness:rail_spacing + rail_thickness:gridfinity_x * gridfinity_xy_to_mm ]){
             if(! (i+rail_thickness > gridfinity_x * gridfinity_xy_to_mm - gridfinity_wall_thickness))
             {
                 translate([i,removal + gridfinity_wall_thickness,removal])
@@ -55,9 +56,11 @@ difference(){
                 cube([gridfinity_x * gridfinity_xy_to_mm - gridfinity_tolerance - gridfinity_wall_thickness*2,
                     gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance- gridfinity_wall_thickness*2 - rail_depth*2,
                     gridfinity_z * gridfinity_z_to_mm + addition*2],false);
-
         }
-        else if(rail_direction == horizontal){
+
+    }
+    else if(rail_direction == horizontal){
+        for(i = [gridfinity_wall_thickness:rail_spacing + rail_thickness:gridfinity_z * gridfinity_z_to_mm ]){
             if(! (i+rail_thickness > gridfinity_z * gridfinity_z_to_mm - gridfinity_wall_thickness)){
                     translate([removal,removal + gridfinity_wall_thickness,i])
                         cube(
@@ -71,8 +74,8 @@ difference(){
                     gridfinity_y * gridfinity_xy_to_mm - gridfinity_tolerance- gridfinity_wall_thickness*2 - rail_depth*2,
                     gridfinity_z * gridfinity_z_to_mm  - gridfinity_wall_thickness*2],false);
         }
-        else {
-            echo("No rail direction set");
-        }
+    }
+    else {
+        echo("No rail direction set");
     }
 }
