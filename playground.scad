@@ -1,5 +1,6 @@
-// Constants to leave the same
-// gridfinity
+/* [Hidden] */
+// Gridfinity
+
 gridfinity_xy_to_mm = 42;
 gridfinity_z_to_mm = 7;
 gridfinity_tolerance = 0.5;
@@ -15,16 +16,23 @@ removal = -0.01;
 addition = 0.01;
 
 // Variables to edit
-// gridfinity
+/* [Gridfinity] */
+// Length
 gridfinity_x = 1;
+// Width
 gridfinity_y = 1;
+// Height
 gridfinity_z = 6;
+// How much extra material to leave between exterior and ridges.
 gridfinity_wall_thickness = 3;
 
-// Rails
+/* [Rails] */
+// How big are the ridges cutouts.
 rail_thickness = 3;
+// How far between each ridge.
 rail_spacing = 5;
-rail_direction = horizontal;
+// Orientation of the ridges
+rail_direction = 2; // [1:horizontal, 2:vertical]
 
 
 difference(){
