@@ -41,11 +41,27 @@ difference(){
         gridfinity_z * gridfinity_z_to_mm],false);
     
     for(i = [gridfinity_wall_thickness:rail_spacing + rail_thickness:gridfinity_x * gridfinity_xy_to_mm ]){
-        if(! (i+rail_thickness > gridfinity_x * gridfinity_xy_to_mm - gridfinity_wall_thickness))
-        {
-            translate( rail_direction==horizontal ? [i,removal + gridfinity_wall_thickness,removal] : 
-                    rail_direction==vertical ? [removal,removal + gridfinity_wall_thickness,i] : [0,0,0])
-                cube([rail_thickness, gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2 ,gridfinity_z*gridfinity_z_to_mm + addition*2]);
+        if(rail_direction == vertical){
+            if(! (i+rail_thickness > gridfinity_x * gridfinity_xy_to_mm - gridfinity_wall_thickness))
+            {
+                translate([i,removal + gridfinity_wall_thickness,removal])
+                    cube(
+                        [rail_thickness, 
+                        gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness*2,
+                        gridfinity_z*gridfinity_z_to_mm + addition*2]);
+            }
+        }
+        else if(rail_direction == horizontal){
+            if(! (i+rail_thickness > gridfinity_z * gridfinity_z_to_mm - gridfinity_wall_thickness)){
+                    translate([removal,removal + gridfinity_wall_thickness,i])
+                        cube(
+                            [ gridfinity_x*gridfinity_xy_to_mm, 
+                            gridfinity_y * gridfinity_xy_to_mm - gridfinity_wall_thickness * 2,
+                            rail_thickness]);
+                }
+        }
+        else {
+            echo("No rail direction set");
         }
     }
 
